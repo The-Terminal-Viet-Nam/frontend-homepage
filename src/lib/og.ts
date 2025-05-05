@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
-const APP_NAME = "Minimil";
-const APP_DEFAULT_TITLE = "Minimil";
-const APP_TITLE_TEMPLATE = "%s - Minimil";
+const APP_NAME = "The Terminal";
+const APP_DEFAULT_TITLE = "The Terminal";
+const APP_TITLE_TEMPLATE = "%s - The Terminal";
 const APP_DESCRIPTION =
-  "A sleek and minimal Next.js starter template, optimized for performance and rapid development.";
+  "Chúng tôi cung cấp dịch vụ VPS, Hosting và Cloud tối ưu cho lập trình viên và doanh nghiệp nhỏ.";
 
 export const OpenGraph: Metadata = {
   applicationName: APP_NAME,
