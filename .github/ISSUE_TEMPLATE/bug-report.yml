@@ -1,0 +1,87 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees:
+    - sunaookamishirokodev
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for taking the time to fill out this bug report!
+
+    - type: input
+      id: version
+      attributes:
+          label: Version
+          description: What version are you running?
+          placeholder: v1.0.0
+      validations:
+          required: true
+
+    - type: dropdown
+      id: type
+      attributes:
+          label: Bug Type
+          description: What type of bug is this?
+          options:
+              - API
+              - Database
+              - Authentication
+              - Media Upload
+              - Email
+              - Performance
+              - Security
+              - Other
+      validations:
+          required: true
+
+    - type: textarea
+      id: what-happened
+      attributes:
+          label: What happened?
+          description: Describe the bug and steps to reproduce
+          placeholder: |
+              1. Go to '...'
+              2. Click on '....'
+              3. Scroll down to '....'
+              4. See error
+      validations:
+          required: true
+
+    - type: textarea
+      id: expected
+      attributes:
+          label: Expected Behavior
+          description: What should have happened?
+      validations:
+          required: true
+
+    - type: dropdown
+      id: environment
+      attributes:
+          label: Environment
+          description: Where is this happening?
+          options:
+              - Production
+              - Staging
+              - Development
+              - Local
+      validations:
+          required: true
+
+    - type: textarea
+      id: logs
+      attributes:
+          label: Error Logs
+          description: Copy and paste any relevant error logs
+          render: shell
+
+    - type: checkboxes
+      id: terms
+      attributes:
+          label: Code of Conduct
+          description: By submitting this issue, you agree to follow our Code of Conduct
+          options:
+              - label: I agree to follow this project's Code of Conduct
+                required: true

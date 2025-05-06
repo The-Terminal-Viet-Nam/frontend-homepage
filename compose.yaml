@@ -1,0 +1,7 @@
+services:
+  app:
+    build: .
+    env_file:
+      - .env.production.local
+    ports:
+      - "4000:4000"

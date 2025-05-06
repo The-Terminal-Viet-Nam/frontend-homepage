@@ -1,12 +1,38 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for more information:
-# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-# https://containers.dev/guide/dependabot
-
 version: 2
 updates:
-    - package-ecosystem: 'npm'
-      directory: '/'
+    - package-ecosystem: "github-actions"
+      directory: "/"
       schedule:
-          interval: weekly
+          interval: "daily"
+      labels:
+          - "github-actions"
+          - "dependencies"
+      commit-message:
+          prefix: "chore"
+          include: "scope"
+
+    - package-ecosystem: "npm"
+      directory: "/"
+      schedule:
+          interval: "daily"
+      labels:
+          - "npm"
+          - "dependencies"
+      ignore:
+          - dependency-name: "typescript"
+            versions: ["5.x"]
+      commit-message:
+          prefix: "chore"
+          include: "scope"
+      versioning-strategy: increase
+
+    - package-ecosystem: "docker"
+      directory: "/"
+      schedule:
+          interval: "weekly"
+      labels:
+          - "docker"
+          - "dependencies"
+      commit-message:
+          prefix: "chore"
+          include: "scope"

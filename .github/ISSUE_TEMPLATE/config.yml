@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+    - name: 💬 Discussions
+      url: https://github.com/The-Terminal-Viet-Nam/frontend-homepage/discussions
+      about: Ask questions and discuss
+    - name: 🤝 Contributing Guidelines
+      url: https://github.com/The-Terminal-Viet-Nam/frontend-homepage/blob/main/CONTRIBUTING.md
+      about: Please read through our contributing guidelines before creating an issue
+    - name: 🔒 Security Policy
+      url: https://github.com/The-Terminal-Viet-Nam/frontend-homepage/security/policy
+      about: Report security vulnerabilities

@@ -1,0 +1,11 @@
+.github
+.vscode
+.next
+node_modules
+.dockerignore
+.editorconfig
+.gitignore
+biome.json
+commitlint.config.js
+*.md
+npm-debug.log
