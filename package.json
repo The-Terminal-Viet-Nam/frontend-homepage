@@ -76,8 +76,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": ["biome lint --write ."],
-    "*.{json,css,html,md}": ["biome format --write ."],
-    "*": ["next build"]
+    "*.{json,css,html,md}": ["biome format --write ."]
   },
   "config": {
     "commitizen": {

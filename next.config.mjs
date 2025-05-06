@@ -9,5 +9,5 @@ const withSerwist = withSerwistInit({
 
 export default withSerwist({
   // Your Next.js config
-  output: 'standalone'
+  output: "standalone",
 });
