@@ -1,5 +1,6 @@
 packages:
-  - '.'
+  - .
 onlyBuiltDependencies:
   - '@biomejs/biome'
+  - '@tsparticles/engine'
   - sharp

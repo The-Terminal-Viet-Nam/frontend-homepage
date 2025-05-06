@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 const APP_NAME = "The Terminal";
 const APP_DEFAULT_TITLE = "The Terminal";
 const APP_TITLE_TEMPLATE = "%s - The Terminal";
-const APP_DESCRIPTION =
-  "Chúng tôi cung cấp dịch vụ VPS, Hosting và Cloud tối ưu cho lập trình viên và doanh nghiệp nhỏ.";
+export const APP_DESCRIPTION =
+  "We are a young technology group from Vietnam, specializing in providing optimal VPS, Hosting and Cloud services for programmers and small businesses.";
 
 export const OpenGraph: Metadata = {
   applicationName: APP_NAME,
@@ -41,14 +41,18 @@ export const OpenGraph: Metadata = {
   },
   keywords: [
     "Next.js PWA",
-    "Next.js 15 PWA Template",
-    "Minimal PWA",
     "Tailwind CSS",
-    "Serwist",
     "React",
-    "Starter Template",
-    "Offline Support",
     "Fast and Lightweight",
+    "VPS",
+    "Hosting",
+    "Cloud",
+    "Programmers",
+    "Small Businesses",
+    "Vietnamese",
+    "Vietnam",
+    "Terminal",
+    "The Terminal",
   ],
   appleWebApp: {
     capable: true,

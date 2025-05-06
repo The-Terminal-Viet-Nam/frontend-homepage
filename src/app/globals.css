@@ -12,3 +12,14 @@
     transform: translate(-50%, -40%) scale(1);
   }
 }
+
+.background-color {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.96);
+  background-image: linear-gradient(to right, #171717 1px, transparent 1px),
+    linear-gradient(to bottom, #171717 1px, transparent 1px);
+  background-size: 40px 40px;
+}

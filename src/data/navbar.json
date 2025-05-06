@@ -1,0 +1,14 @@
+[
+  {
+    "label": "Services",
+    "link": "/services"
+  },
+  {
+    "label": "Products",
+    "link": "/products"
+  },
+  {
+    "label": "Pricing",
+    "link": "/pricing"
+  }
+]

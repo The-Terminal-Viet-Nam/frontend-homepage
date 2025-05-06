@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Company",
+    "items": [
+      {
+        "label": "Team",
+        "link": "/"
+      },
+      {
+        "label": "Contact us",
+        "link": "/contact"
+      }
+    ]
+  },
+  {
+    "title": "Legal",
+    "items": [
+      {
+        "label": "Terms & Conditions",
+        "link": "/terms"
+      },
+      {
+        "label": "Privacy Policy",
+        "link": "/privacy"
+      }
+    ]
+  },
+  {
+    "title": "Ecosystem",
+    "items": [
+      {
+        "label": "Blogs",
+        "link": "/blogs"
+      },
+      {
+        "label": "Dashboard",
+        "link": "/dashboard"
+      }
+    ]
+  }
+]

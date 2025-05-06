@@ -1,10 +1,28 @@
 "use client";
+import navbarData from "@/data/navbar.json";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { IoClose } from "react-icons/io5";
 import Link from "./link";
+import { Container, Item } from "./motion/fade";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
 
-function Navbar() {
+type NavbarData = {
+  label: string;
+  link: string;
+};
+
+const data: NavbarData[] = navbarData;
+
+function Navbar({
+  setIsActive,
+}: { setIsActive: Dispatch<SetStateAction<boolean>> }) {
   const [active, setActive] = useState<string | null>(null);
   const [showNavbar, setShowNavbar] = useState(false);
 
@@ -29,9 +47,22 @@ function Navbar() {
     <div
       className={`fixed inset-x-0 top-2 z-50 mx-auto ${showNavbar ? "max-w-2xl" : "container"}`}
     >
+      <Image
+        className="block md:hidden"
+        onClick={() => setIsActive(true)}
+        src="/logo.webp"
+        alt="Logo"
+        height={40}
+        width={40}
+      />
+
       <Menu
         setActive={setActive}
-        className={`transition-all duration-500 ${showNavbar ? "justify-center rounded-full border bg-white dark:border-white/[0.2] dark:bg-black" : "items-center justify-start border-transparent bg-transparent"}`}
+        className={`hidden origin-center transform transition-all duration-300 ease-in-out md:flex ${
+          showNavbar
+            ? "scale-100 justify-center rounded-full border bg-white opacity-100 shadow-lg dark:border-white/[0.2] dark:bg-black"
+            : "scale-95 items-center justify-start border-transparent bg-transparent opacity-90"
+        }`}
       >
         {!showNavbar && (
           <Image src="/logo.webp" alt="Logo" height={40} width={40} />
@@ -81,7 +112,9 @@ function Navbar() {
           </div>
         </MenuItem>
 
-        <div className="my-auto flex flex-1 justify-end space-x-4">
+        <div
+          className={`my-auto flex flex-1 justify-end space-x-4 ${showNavbar ? "hidden" : "block"}`}
+        >
           <Link
             href="/login"
             text="Login"
@@ -98,4 +131,45 @@ function Navbar() {
   );
 }
 
-export { Navbar };
+function NavbarMobile({
+  setIsActive,
+  isActive,
+}: { setIsActive: Dispatch<SetStateAction<boolean>>; isActive: boolean }) {
+  return (
+    <div
+      className={`fixed inset-0 z-50 flex h-full w-full transform flex-col gap-5 bg-black/95 p-20 transition-transform duration-300 ease-in-out ${
+        isActive ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
+      {isActive && (
+        <Container>
+          <div className="flex justify-between">
+            <h1 className="mb-10 font-bold text-5xl">Menu</h1>
+            <IoClose onClick={() => setIsActive(false)} className="text-5xl" />
+          </div>
+          <Accordion type="single" collapsible>
+            {data.map((item, id) => {
+              return (
+                <Item key={id}>
+                  <AccordionItem value={`item-${id}`}>
+                    <AccordionTrigger className="font-semibold text-2xl">
+                      {item.label}
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      Yes. It adheres to the WAI-ARIA design pattern.
+                    </AccordionContent>
+                    <AccordionContent>
+                      Yes. It adheres to the WAI-ARIA design pattern.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Item>
+              );
+            })}
+          </Accordion>
+        </Container>
+      )}
+    </div>
+  );
+}
+
+export { Navbar, NavbarMobile };
