@@ -41,7 +41,7 @@ export default function HomePage() {
 
         <div className="z-10 flex w-full max-w-7xl flex-col gap-10 p-4 pt-20 md:pt-0 lg:flex-row">
           <div className="flex flex-col">
-            <h1 className="bg-gradient-to-b bg-opacity-50 from-neutral-50 to-neutral-400 bg-clip-text text-center font-bold text-4xl text-transparent md:text-7xl">
+            <h1 className="bg-linear-to-b bg-opacity-50 from-neutral-50 to-neutral-400 bg-clip-text text-center font-bold text-4xl text-transparent md:text-7xl">
               Do your task with <br /> <Cover>max speed</Cover>
             </h1>
             <div className="mx-auto mt-4 max-w-lg text-center font-normal text-base text-neutral-300">
