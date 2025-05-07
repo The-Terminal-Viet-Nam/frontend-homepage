@@ -1,7 +1,23 @@
 "use client";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import navbarData from "@/data/navbar.json";
+import { useUserQuery } from "@/lib/queries/me";
 import Image from "next/image";
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { IoMdSettings } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import Link from "./link";
 import { Container, Item } from "./motion/fade";
@@ -25,6 +41,8 @@ function Navbar({
 }: { setIsActive: Dispatch<SetStateAction<boolean>> }) {
   const [active, setActive] = useState<string | null>(null);
   const [showNavbar, setShowNavbar] = useState(false);
+
+  const user = useUserQuery();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,18 +131,73 @@ function Navbar({
         </MenuItem>
 
         <div
-          className={`my-auto flex flex-1 justify-end space-x-4 ${showNavbar ? "hidden" : "block"}`}
+          className={`my-auto flex-1 items-center justify-end space-x-4 text-white ${showNavbar ? "hidden" : "flex"}`}
         >
           <Link
             href="/login"
             text="Login"
-            className="underline-offset-2 hover:text-white/80 hover:underline hover:decoration-wavy"
+            className={`underline-offset-2 hover:text-white/80 hover:underline hover:decoration-wavy ${user.data ? "hidden" : "inline-block"}`}
           />
           <Link
             href="/register"
             text="Register"
-            className="underline-offset-2 hover:text-white/80 hover:underline hover:decoration-wavy"
+            className={`underline-offset-2 hover:text-white/80 hover:underline hover:decoration-wavy ${user.data ? "hidden" : "inline-block"}`}
           />
+          <DropdownMenu>
+            <DropdownMenuTrigger className={user.data ? "block" : "hidden"}>
+              <IoMdSettings className="text-2xl" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56 border-white/40 bg-black text-white">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  Profile
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Billing
+                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Settings
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Keyboard shortcuts
+                  <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent className="border-white/40 bg-black text-white">
+                      <DropdownMenuItem>Email</DropdownMenuItem>
+                      <DropdownMenuItem>Message</DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>More...</DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                <DropdownMenuItem>
+                  New Team
+                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>GitHub</DropdownMenuItem>
+              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuItem disabled>API</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                Log out
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </Menu>
     </div>

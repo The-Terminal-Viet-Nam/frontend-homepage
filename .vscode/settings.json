@@ -11,5 +11,8 @@
     "source.organizeImports": "explicit"
   },
 
-  "cSpell.words": ["commitlint"]
+  "cSpell.words": ["commitlint"],
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  }
 }
