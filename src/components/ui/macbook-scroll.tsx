@@ -24,8 +24,8 @@ import {
 import {
   motion,
   useScroll,
-  useTransform,
   type MotionValue,
+  useTransform,
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 

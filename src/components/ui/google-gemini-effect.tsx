@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, type MotionValue } from "motion/react";
+import { type MotionValue, motion } from "motion/react";
 
 const transition = {
   duration: 0,

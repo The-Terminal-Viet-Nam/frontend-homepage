@@ -7,5 +7,6 @@ node_modules
 .gitignore
 biome.json
 commitlint.config.js
+eslint.config.mjs
 *.md
 npm-debug.log
