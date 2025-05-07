@@ -1,9 +1,9 @@
 import css from "@eslint/css";
 import json from "@eslint/json";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import pluginReact from "eslint-plugin-react";
 import { defineConfig } from "eslint/config";
 import globals from "globals";
-import tseslint from "typescript-eslint";
 
 export default defineConfig([
   {
@@ -15,4 +15,12 @@ export default defineConfig([
   { plugins: { "@tanstack/query": pluginQuery } },
   { files: ["**/*.json"], plugins: { json }, language: "json/json" },
   { files: ["**/*.css"], plugins: { css }, language: "css/css" },
+  {
+    // ...
+    "rules": {
+      // ...
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off"
+    }
+  }
 ]);

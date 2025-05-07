@@ -2,15 +2,22 @@
 import { BottomGradient } from "@/components/form/bottomGradient";
 import { FormInput } from "@/components/form/formInput";
 import { SocialButton } from "@/components/form/socialButton";
-import { AuroraBackground } from "@/components/ui/aurora-background";
+import dynamic from "next/dynamic";
 import { RegisterDto } from "@/lib/dto";
 import { useRegisterMutation } from "@/lib/queries/register";
 import { useUserStore } from "@/stores/user-store";
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
-import { AxiosError } from "axios";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+const AuroraBackground = dynamic(
+  () =>
+    import("@/components/ui/aurora-background").then(
+      (mod) => mod.AuroraBackground,
+    ),
+  { ssr: false },
+);
 
 export default function RegisterForm() {
   const mutation = useRegisterMutation();
@@ -110,10 +117,9 @@ export default function RegisterForm() {
 
           {mutation.isError && (
             <p className="mb-4 rounded border border-red-400 bg-red-100 p-2 text-red-700 text-sm">
-              {mutation.error instanceof AxiosError
-                ? mutation.error.response?.data?.message
+              {mutation.error.response?.data?.message
+                ? mutation.error.response.data.message
                 : "An error occurred."}
-              red-700sm
             </p>
           )}
 

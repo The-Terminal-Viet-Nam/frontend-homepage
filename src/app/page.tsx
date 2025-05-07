@@ -4,15 +4,31 @@ import { Navbar, NavbarMobile } from "@/components/navbar";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import ColourfulText from "@/components/ui/colourful-text";
 import { Cover } from "@/components/ui/cover";
-import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
-import { MacbookScroll } from "@/components/ui/macbook-scroll";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import features from "@/data/features.json";
-import { useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "motion/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
+
+const MacbookScroll = dynamic(
+  () =>
+    import("@/components/ui/macbook-scroll").then((mod) => mod.MacbookScroll),
+  {
+    ssr: true,
+  },
+);
+const GoogleGeminiEffect = dynamic(
+  () =>
+    import("@/components/ui/google-gemini-effect").then(
+      (mod) => mod.GoogleGeminiEffect,
+    ),
+  {
+    ssr: true,
+  },
+);
 
 export default function HomePage() {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -56,6 +72,7 @@ export default function HomePage() {
             height={0}
             className="m-auto aspect-video w-96 max-w-full object-contain lg:flex-1"
             sizes="100vw"
+            priority
           />
         </div>
       </section>

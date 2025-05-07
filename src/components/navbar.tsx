@@ -28,6 +28,7 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
+import { INFINITE_CACHE } from "next/dist/lib/constants";
 
 type NavbarData = {
   label: string;
@@ -42,7 +43,7 @@ function Navbar({
   const [active, setActive] = useState<string | null>(null);
   const [showNavbar, setShowNavbar] = useState(false);
 
-  const user = useUserQuery();
+  const user = useUserQuery(INFINITE_CACHE);
 
   useEffect(() => {
     const handleScroll = () => {
