@@ -13,5 +13,5 @@ export default withSerwist({
   output: "standalone",
   experimental: {
     useCache: true,
-  }
+  },
 });
