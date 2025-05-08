@@ -5,7 +5,6 @@ const withSerwist = withSerwistInit({
   // use something else that works, such as "service-worker/index.ts".
   swSrc: "src/lib/sw.ts",
   swDest: "public/sw.js",
-  disable: true,
 });
 
 export default withSerwist({
