@@ -1,7 +1,7 @@
-// public/serwist-worker.js
-import { Serwist } from "serwist";
-import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
 import { defaultCache } from "@serwist/next/worker";
+// public/serwist-worker.js
+import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
+import { CacheFirst, Serwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -15,7 +15,16 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: defaultCache,
+  runtimeCaching: [
+    ...defaultCache,
+    {
+      handler: new CacheFirst({
+        cacheName: "manifest-cache",
+      }),
+      matcher: /\/manifest\.webmanifest$/,
+      method: "GET",
+    },
+  ],
 });
 
 serwist.addEventListeners();

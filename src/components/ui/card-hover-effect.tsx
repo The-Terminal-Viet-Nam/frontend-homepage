@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
@@ -18,12 +19,7 @@ export const HoverEffect = ({
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div
-      className={cn(
-        "grid grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-3",
-        className,
-      )}
-    >
+    <div className={cn("grid grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-3", className)}>
       {items.map((item, idx) => (
         <Link
           href={item?.link}
@@ -38,14 +34,8 @@ export const HoverEffect = ({
                 className="absolute inset-0 block h-full w-full rounded-3xl bg-white/20"
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
-                animate={{
-                  opacity: 1,
-                  transition: { duration: 0.15 },
-                }}
-                exit={{
-                  opacity: 0,
-                  transition: { duration: 0.15, delay: 0.2 },
-                }}
+                animate={{ opacity: 1, transition: { duration: 0.15 } }}
+                exit={{ opacity: 0, transition: { duration: 0.15, delay: 0.2 } }}
               />
             )}
           </AnimatePresence>
@@ -88,11 +78,7 @@ export const CardTitle = ({
   className?: string;
   children: React.ReactNode;
 }) => {
-  return (
-    <h4 className={cn("mt-4 font-bold text-zinc-100 tracking-wide", className)}>
-      {children}
-    </h4>
-  );
+  return <h4 className={cn("mt-4 font-bold text-zinc-100 tracking-wide", className)}>{children}</h4>;
 };
 export const CardDescription = ({
   className,
@@ -101,14 +87,5 @@ export const CardDescription = ({
   className?: string;
   children: React.ReactNode;
 }) => {
-  return (
-    <p
-      className={cn(
-        "mt-8 text-sm text-zinc-400 leading-relaxed tracking-wide",
-        className,
-      )}
-    >
-      {children}
-    </p>
-  );
+  return <p className={cn("mt-8 text-sm text-zinc-400 leading-relaxed tracking-wide", className)}>{children}</p>;
 };

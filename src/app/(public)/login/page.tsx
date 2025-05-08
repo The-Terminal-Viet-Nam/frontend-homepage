@@ -2,8 +2,9 @@
 import { BottomGradient } from "@/components/form/bottomGradient";
 import { FormInput } from "@/components/form/formInput";
 import { SocialButton } from "@/components/form/socialButton";
-import { RegisterDto } from "@/lib/dto";
-import { useRegisterMutation } from "@/lib/queries/register";
+import { LoginDto } from "@/lib/dto";
+import { useLoginMutation } from "@/lib/queries/login";
+import { useUserQuery } from "@/lib/queries/me";
 import { useUserStore } from "@/stores/user-store";
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
 import { motion } from "motion/react";
@@ -16,8 +17,9 @@ const AuroraBackground = dynamic(
   { ssr: false },
 );
 
-export default function RegisterForm() {
-  const { mutate, isSuccess, isError, isPending, data, error } = useRegisterMutation();
+export default function LoginForm() {
+  const { isError, isPending, isSuccess, data, error, mutate } = useLoginMutation();
+  const { refetch } = useUserQuery();
   const { setUser } = useUserStore();
   const { push } = useRouter();
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -28,22 +30,14 @@ export default function RegisterForm() {
 
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email");
-    const displayName = formData.get("displayName");
     const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
 
-    if (password !== confirmPassword) {
-      errorMap.confirmPassword = "Passwords do not match";
-      return setErrors(errorMap);
-    }
-
-    const parsed = RegisterDto.safeParse({ email, displayName, password });
+    const parsed = LoginDto.safeParse({ email, password });
 
     if (!parsed.success) {
       const formatted = parsed.error.format();
       if (formatted.email?._errors?.[0]) errorMap.email = formatted.email._errors[0];
       if (formatted.password?._errors?.[0]) errorMap.password = formatted.password._errors[0];
-      if (formatted.displayName?._errors?.[0]) errorMap.displayName = formatted.displayName._errors[0];
       return setErrors(errorMap);
     }
 
@@ -54,9 +48,14 @@ export default function RegisterForm() {
   useEffect(() => {
     if (isSuccess) {
       setUser(data.data.data);
+      refetch();
+      push("/");
+    }
+
+    if (isError && error.response?.status === 409) {
       push("/verify-email");
     }
-  }, [isSuccess, data, push, setUser]);
+  }, [isSuccess, isError, data, error, push, setUser, refetch]);
 
   return (
     <AuroraBackground className="flex min-h-screen items-center justify-center">
@@ -67,17 +66,9 @@ export default function RegisterForm() {
         transition={{ duration: 0.5 }}
       >
         <h2 className="font-bold text-neutral-200 text-xl">Welcome to The Terminal</h2>
-        <p className="text-neutral-300">Register to The Terminal to start your journey</p>
+        <p className="text-neutral-300">Login to The Terminal to continue your journey</p>
 
         <form className="my-8" onSubmit={handleSubmit}>
-          <FormInput
-            id="displayName"
-            label="Full name"
-            name="displayName"
-            placeholder="Sunaookami Shiroko"
-            error={errors.displayName}
-          />
-
           <FormInput
             id="email"
             label="Email Address"
@@ -96,15 +87,6 @@ export default function RegisterForm() {
             error={errors.password}
           />
 
-          <FormInput
-            id="confirmPassword"
-            label="Repeat password"
-            name="confirmPassword"
-            placeholder="••••••••"
-            type="password"
-            error={errors.confirmPassword}
-          />
-
           {isError && (
             <p className="mb-4 rounded border border-red-400 bg-red-100 p-2 text-red-700 text-sm">
               {error.response?.data?.message ? error.response.data.message : "An error occurred."}
@@ -112,9 +94,7 @@ export default function RegisterForm() {
           )}
 
           {isSuccess && (
-            <p className="my-8 rounded border border-green-400 bg-green-100 p-4 text-green-700">
-              Register successfully.
-            </p>
+            <p className="my-8 rounded border border-green-400 bg-green-100 p-4 text-green-700">Login successfully.</p>
           )}
 
           <button

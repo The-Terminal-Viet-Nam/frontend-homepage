@@ -1,6 +1,7 @@
 "use client";
+
 import { cn } from "@/lib/utils";
-import { type MotionValue, motion } from "motion/react";
+import { motion, type MotionValue } from "motion/react";
 
 const transition = {
   duration: 0,
@@ -25,13 +26,9 @@ export const GoogleGeminiEffect = ({
       <p className="bg-linear-to-b from-neutral-100 to-neutral-300 bg-clip-text pb-4 text-center font-normal text-lg text-transparent md:text-7xl">
         {title}
       </p>
-      <p className="mx-auto mt-4 max-w-lg text-center font-normal text-neutral-400 text-xs md:text-xl">
-        {description}
-      </p>
+      <p className="mx-auto mt-4 max-w-lg text-center font-normal text-neutral-400 text-xs md:text-xl">{description}</p>
       <div className="-top-44 md:-top-28 absolute flex h-screen w-full items-center justify-center">
-        <div className="z-30 w-fit font-bold text-black text-xs md:text-base">
-          {link}
-        </div>
+        <div className="z-30 w-fit font-bold text-black text-xs md:text-base">{link}</div>
       </div>
       <svg
         width="1440"
@@ -45,12 +42,8 @@ export const GoogleGeminiEffect = ({
           stroke="#FFB7C5"
           strokeWidth="2"
           fill="none"
-          initial={{
-            pathLength: 0,
-          }}
-          style={{
-            pathLength: pathLengths[0],
-          }}
+          initial={{ pathLength: 0 }}
+          style={{ pathLength: pathLengths[0] }}
           transition={transition}
         />
         <motion.path
@@ -58,12 +51,8 @@ export const GoogleGeminiEffect = ({
           stroke="#FFDDB7"
           strokeWidth="2"
           fill="none"
-          initial={{
-            pathLength: 0,
-          }}
-          style={{
-            pathLength: pathLengths[1],
-          }}
+          initial={{ pathLength: 0 }}
+          style={{ pathLength: pathLengths[1] }}
           transition={transition}
         />
         <motion.path
@@ -71,12 +60,8 @@ export const GoogleGeminiEffect = ({
           stroke="#B1C5FF"
           strokeWidth="2"
           fill="none"
-          initial={{
-            pathLength: 0,
-          }}
-          style={{
-            pathLength: pathLengths[2],
-          }}
+          initial={{ pathLength: 0 }}
+          style={{ pathLength: pathLengths[2] }}
           transition={transition}
         />
         <motion.path
@@ -84,12 +69,8 @@ export const GoogleGeminiEffect = ({
           stroke="#4FABFF"
           strokeWidth="2"
           fill="none"
-          initial={{
-            pathLength: 0,
-          }}
-          style={{
-            pathLength: pathLengths[3],
-          }}
+          initial={{ pathLength: 0 }}
+          style={{ pathLength: pathLengths[3] }}
           transition={transition}
         />
         <motion.path
@@ -97,12 +78,8 @@ export const GoogleGeminiEffect = ({
           stroke="#076EFF"
           strokeWidth="2"
           fill="none"
-          initial={{
-            pathLength: 0,
-          }}
-          style={{
-            pathLength: pathLengths[4],
-          }}
+          initial={{ pathLength: 0 }}
+          style={{ pathLength: pathLengths[4] }}
           transition={transition}
         />
 

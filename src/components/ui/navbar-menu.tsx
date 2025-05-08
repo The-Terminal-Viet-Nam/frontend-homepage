@@ -1,7 +1,7 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import type React from "react";
 
 const transition = {
   type: "spring",
@@ -24,7 +24,7 @@ export const MenuItem = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative ">
+    <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
@@ -71,10 +71,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className={cn(
-        "relative flex space-x-4 px-8 py-6 shadow-input",
-        className,
-      )}
+      className={cn("relative flex space-x-4 px-8 py-6 shadow-input", className)}
     >
       {children}
     </nav>
@@ -94,20 +91,10 @@ export const ProductItem = ({
 }) => {
   return (
     <a href={href} className="flex space-x-2">
-      <img
-        src={src}
-        width={140}
-        height={70}
-        alt={title}
-        className="shrink-0 rounded-md shadow-2xl"
-      />
+      <img src={src} width={140} height={70} alt={title} className="shrink-0 rounded-md shadow-2xl" />
       <div>
-        <h4 className="mb-1 font-bold text-black text-xl dark:text-white">
-          {title}
-        </h4>
-        <p className="max-w-[10rem] text-neutral-700 text-sm dark:text-neutral-300">
-          {description}
-        </p>
+        <h4 className="mb-1 font-bold text-black text-xl dark:text-white">{title}</h4>
+        <p className="max-w-[10rem] text-neutral-700 text-sm dark:text-neutral-300">{description}</p>
       </div>
     </a>
   );
@@ -120,10 +107,7 @@ export const HoveredLink = ({
   children: React.ReactNode;
 } & React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
-    <a
-      {...rest}
-      className="text-neutral-700 hover:text-black dark:text-neutral-200 "
-    >
+    <a className="text-neutral-700 hover:text-black dark:text-neutral-200" {...rest}>
       {children}
     </a>
   );

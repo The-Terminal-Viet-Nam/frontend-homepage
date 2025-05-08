@@ -1,4 +1,5 @@
 "use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,58 +15,31 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import navbarData from "@/data/navbar.json";
+import { useShowNavbarOnScroll } from "@/hooks/useShowNavbarOnScroll";
 import { useUserQuery } from "@/lib/queries/me";
+import { INFINITE_CACHE } from "next/dist/lib/constants";
 import Image from "next/image";
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import Link from "next/link";
+import { useState, type Dispatch, type SetStateAction } from "react";
 import { IoMdSettings } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import Link from "./link";
 import { Container, Item } from "./motion/fade";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
-import { INFINITE_CACHE } from "next/dist/lib/constants";
 
-type NavbarData = {
+const data: {
   label: string;
   link: string;
-};
+}[] = navbarData;
 
-const data: NavbarData[] = navbarData;
-
-function Navbar({
-  setIsActive,
-}: { setIsActive: Dispatch<SetStateAction<boolean>> }) {
+function Navbar({ setIsActive }: { setIsActive: Dispatch<SetStateAction<boolean>> }) {
   const [active, setActive] = useState<string | null>(null);
-  const [showNavbar, setShowNavbar] = useState(false);
+  const showNavbar = useShowNavbarOnScroll();
 
   const user = useUserQuery(INFINITE_CACHE);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 64) {
-        setShowNavbar(true);
-      } else {
-        setShowNavbar(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup function
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
-    <div
-      className={`fixed inset-x-0 top-2 z-50 mx-auto ${showNavbar ? "max-w-2xl" : "container"}`}
-    >
+    <div className={`fixed inset-x-0 top-2 z-50 mx-auto ${showNavbar ? "max-w-2xl" : "container"}`}>
       <Image
         className="block md:hidden"
         onClick={() => setIsActive(true)}
@@ -83,9 +57,7 @@ function Navbar({
             : "scale-95 items-center justify-start border-transparent bg-transparent opacity-90"
         }`}
       >
-        {!showNavbar && (
-          <Image src="/logo.webp" alt="Logo" height={40} width={40} />
-        )}
+        {!showNavbar && <Image src="/logo.webp" alt="Logo" height={40} width={40} />}
         <MenuItem setActive={setActive} active={active} item="Services">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="/web-dev">Web Development</HoveredLink>
@@ -136,14 +108,16 @@ function Navbar({
         >
           <Link
             href="/login"
-            text="Login"
             className={`underline-offset-2 hover:text-white/80 hover:underline hover:decoration-wavy ${user.data ? "hidden" : "inline-block"}`}
-          />
+          >
+            Login
+          </Link>
           <Link
             href="/register"
-            text="Register"
             className={`underline-offset-2 hover:text-white/80 hover:underline hover:decoration-wavy ${user.data ? "hidden" : "inline-block"}`}
-          />
+          >
+            Register
+          </Link>
           <DropdownMenu>
             <DropdownMenuTrigger className={user.data ? "block" : "hidden"}>
               <IoMdSettings className="text-2xl" />
@@ -211,30 +185,24 @@ function NavbarMobile({
 }: { setIsActive: Dispatch<SetStateAction<boolean>>; isActive: boolean }) {
   return (
     <div
-      className={`fixed inset-0 z-50 flex h-full w-full transform flex-col gap-5 bg-black/95 p-20 transition-transform duration-300 ease-in-out ${
+      className={`fixed inset-0 z-50 flex h-full w-full transform flex-col gap-5 bg-black/95 p-8 transition-transform duration-300 ease-in-out ${
         isActive ? "translate-x-0" : "-translate-x-full"
       }`}
     >
       {isActive && (
         <Container>
-          <div className="flex justify-between">
+          <div className="flex justify-between text-white">
             <h1 className="mb-10 font-bold text-5xl">Menu</h1>
             <IoClose onClick={() => setIsActive(false)} className="text-5xl" />
           </div>
           <Accordion type="single" collapsible>
             {data.map((item, id) => {
               return (
-                <Item key={id}>
+                <Item key={id} className="text-white">
                   <AccordionItem value={`item-${id}`}>
-                    <AccordionTrigger className="font-semibold text-2xl">
-                      {item.label}
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      Yes. It adheres to the WAI-ARIA design pattern.
-                    </AccordionContent>
-                    <AccordionContent>
-                      Yes. It adheres to the WAI-ARIA design pattern.
-                    </AccordionContent>
+                    <AccordionTrigger className="font-semibold text-2xl">{item.label}</AccordionTrigger>
+                    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+                    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
                   </AccordionItem>
                 </Item>
               );
