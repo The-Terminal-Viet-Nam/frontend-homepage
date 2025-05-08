@@ -34,7 +34,7 @@
     "@radix-ui/react-dropdown-menu": "^2.1.14",
     "@radix-ui/react-label": "^2.1.6",
     "@radix-ui/react-slot": "^1.2.2",
-    "@serwist/next": "^9.0.13",
+    "@serwist/next": "^9.0.14",
     "@tabler/icons-react": "^3.31.0",
     "@tanstack/react-query": "5",
     "@tsparticles/engine": "^3.8.1",
