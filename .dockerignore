@@ -10,3 +10,4 @@ commitlint.config.js
 eslint.config.mjs
 *.md
 npm-debug.log
+.node-version
