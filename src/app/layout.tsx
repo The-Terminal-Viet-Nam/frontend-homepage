@@ -40,9 +40,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
         <TanstackQueryProvider>
-          <HydrationBoundary state={dehydratedState}>
-            {children}
-          </HydrationBoundary>
+          <HydrationBoundary state={dehydratedState}>{children}</HydrationBoundary>
           <Analytics />
         </TanstackQueryProvider>
       </body>

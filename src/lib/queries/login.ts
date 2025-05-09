@@ -5,7 +5,6 @@ import { api } from "./config";
 
 export function useLoginMutation() {
   return useMutation({
-    mutationFn: (data: LoginDtoType) =>
-      api.post<{ data: LoginData }>("/auth/login", data),
+    mutationFn: (data: LoginDtoType) => api.post<{ data: LoginData }>("/auth/login", data),
   });
 }

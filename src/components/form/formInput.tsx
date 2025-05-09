@@ -19,13 +19,7 @@ const FormInput = ({
 }) => (
   <div className="mb-4 flex w-full flex-col space-y-2">
     <Label htmlFor={id}>{label}</Label>
-    <Input
-      id={id}
-      name={name}
-      placeholder={placeholder}
-      type={type}
-      className={error ? "border-red-500" : ""}
-    />
+    <Input id={id} name={name} placeholder={placeholder} type={type} className={error ? "border-red-500" : ""} />
     {error && <p className="mt-1 text-red-500 text-xs">{error}</p>}
   </div>
 );

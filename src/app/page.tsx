@@ -13,18 +13,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
-const MacbookScroll = dynamic(
-  () =>
-    import("@/components/ui/macbook-scroll").then((mod) => mod.MacbookScroll),
-  {
-    ssr: true,
-  },
-);
+const MacbookScroll = dynamic(() => import("@/components/ui/macbook-scroll").then((mod) => mod.MacbookScroll), {
+  ssr: true,
+});
 const GoogleGeminiEffect = dynamic(
-  () =>
-    import("@/components/ui/google-gemini-effect").then(
-      (mod) => mod.GoogleGeminiEffect,
-    ),
+  () => import("@/components/ui/google-gemini-effect").then((mod) => mod.GoogleGeminiEffect),
   {
     ssr: true,
   },
@@ -104,19 +97,9 @@ export default function HomePage() {
         ref={ref}
       >
         <GoogleGeminiEffect
-          pathLengths={[
-            pathLengthFirst,
-            pathLengthSecond,
-            pathLengthThird,
-            pathLengthFourth,
-            pathLengthFifth,
-          ]}
+          pathLengths={[pathLengthFirst, pathLengthSecond, pathLengthThird, pathLengthFourth, pathLengthFifth]}
           link={
-            <HoverBorderGradient
-              containerClassName="rounded-full"
-              as="button"
-              className="flex items-center"
-            >
+            <HoverBorderGradient containerClassName="rounded-full" as="button" className="flex items-center">
               <Link href="/services">Go to service</Link>
             </HoverBorderGradient>
           }

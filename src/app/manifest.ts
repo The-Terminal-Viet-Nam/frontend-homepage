@@ -4,8 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Minimil",
     short_name: "Minimil",
-    description:
-      "A sleek and minimal Next.js starter template, optimized for performance and rapid development.",
+    description: "A sleek and minimal Next.js starter template, optimized for performance and rapid development.",
     start_url: "/",
     display: "standalone",
     background_color: "#FFFFFF",

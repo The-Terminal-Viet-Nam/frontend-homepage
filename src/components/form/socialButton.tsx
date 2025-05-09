@@ -21,9 +21,7 @@ const SocialButton = ({
     transition={{ delay }}
   >
     {icon}
-    <span className="text-neutral-700 text-sm dark:text-neutral-300">
-      {label}
-    </span>
+    <span className="text-neutral-700 text-sm dark:text-neutral-300">{label}</span>
     <BottomGradient />
   </motion.button>
 );
