@@ -1,4 +1,11 @@
 import withSerwistInit from "@serwist/next";
+import nextra from "nextra";
+
+const withNextra = nextra({
+  contentDirBasePath: "/docs",
+  search: { codeblocks: true },
+  defaultShowCopyCode: true,
+});
 
 const withSerwist = withSerwistInit({
   // Note: This is only an example. If you use Pages Router,
@@ -8,10 +15,21 @@ const withSerwist = withSerwistInit({
   disable: process.env.NODE_ENV === "development",
 });
 
-export default withSerwist({
-  // Your Next.js config
-  output: "standalone",
-  experimental: {
-    useCache: true,
-  },
-});
+
+export default withNextra(
+  withSerwist({
+    reactStrictMode: true,
+    output: "standalone",
+    experimental: {
+      useCache: true,
+    },
+    turbopack: {
+      resolveAlias: {
+        "next-mdx-import-source-file": "./src/mdx-components.tsx",
+      },
+    },
+    eslint: {
+      dirs: ["src"],
+    }
+  }),
+);

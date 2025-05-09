@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { memo, useState } from "react";
+import { useState } from "react";
 
 export const HoverEffect = ({
   items,
@@ -49,28 +49,27 @@ export const HoverEffect = ({
   );
 };
 
-export const Card = memo(
-  ({
-    className,
-    children,
-  }: {
-    className?: string;
-    children: React.ReactNode;
-  }) => {
-    return (
-      <div
-        className={cn(
-          "relative z-20 h-full w-full overflow-hidden rounded-2xl border border-white/30 bg-black p-4",
-          className,
-        )}
-      >
-        <div className="relative z-50">
-          <div className="p-4">{children}</div>
-        </div>
+export const Card = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <div
+      className={cn(
+        "relative z-20 h-full w-full overflow-hidden rounded-2xl border border-white/30 bg-black p-4",
+        className,
+      )}
+    >
+      <div className="relative z-50">
+        <div className="p-4">{children}</div>
       </div>
-    );
-  },
-);
+    </div>
+  );
+};
+
 export const CardTitle = ({
   className,
   children,

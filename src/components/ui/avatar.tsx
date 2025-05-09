@@ -14,7 +14,7 @@ function Avatar({ className, ...props }: React.ComponentProps<typeof Root>) {
 }
 
 function AvatarImage({ className, ...props }: React.ComponentProps<typeof Image>) {
-  return <Image data-slot="avatar-image" className={cn("aspect-square size-full", className)} {...props} />;
+  return <Image data-slot="avatar-image" alt="" className={cn("aspect-square size-full", className)} {...props} />;
 }
 
 function AvatarFallback({ className, ...props }: React.ComponentProps<typeof Fallback>) {

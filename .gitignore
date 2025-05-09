@@ -44,3 +44,6 @@ next-env.d.ts
 # sw
 public/sw*
 public/swe-worker*
+
+# nextra search
+_pagefind/

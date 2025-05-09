@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules", ".next", "public/sw.js"]
+    "ignore": ["node_modules", ".next", "public/sw.js", "public/_pagefind"]
   },
   "formatter": {
     "enabled": true,
@@ -39,11 +39,23 @@
       ".husky",
       ".turbo",
       "node_modules",
-      "build"
+      "build",
+      "public/_pagefind"
     ]
   },
   "linter": {
     "enabled": true,
+    "ignore": [
+      ".next",
+      ".vercel",
+      ".env",
+      ".changeset",
+      ".husky",
+      ".turbo",
+      "node_modules",
+      "build",
+      "public/_pagefind"
+    ],
     "rules": {
       "recommended": true,
       "complexity": {

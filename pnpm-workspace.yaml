@@ -4,3 +4,4 @@ onlyBuiltDependencies:
   - '@biomejs/biome'
   - '@tsparticles/engine'
   - sharp
+  - unrs-resolver

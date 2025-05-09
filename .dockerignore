@@ -11,3 +11,4 @@ eslint.config.mjs
 *.md
 npm-debug.log
 .node-version
+public/_pagefind

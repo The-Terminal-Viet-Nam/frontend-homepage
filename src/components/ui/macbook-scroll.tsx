@@ -23,6 +23,7 @@ import {
   IconWorld,
 } from "@tabler/icons-react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export const MacbookScroll = ({
@@ -148,9 +149,11 @@ export const Lid = ({
         className="absolute inset-0 h-96 w-[32rem] rounded-2xl bg-[#010101] p-2"
       >
         <div className="absolute inset-0 rounded-lg bg-[#272729]" />
-        <img
+        <Image
           src={src as string}
           alt="aceternity logo"
+          height={0}
+          width={0}
           className="absolute inset-0 h-full w-full rounded-lg object-cover object-top-left"
         />
       </motion.div>

@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 const transition = {
   type: "spring",
@@ -91,7 +92,7 @@ export const ProductItem = ({
 }) => {
   return (
     <a href={href} className="flex space-x-2">
-      <img src={src} width={140} height={70} alt={title} className="shrink-0 rounded-md shadow-2xl" />
+      <Image src={src} width={140} height={70} alt={title} className="shrink-0 rounded-md shadow-2xl" />
       <div>
         <h4 className="mb-1 font-bold text-black text-xl dark:text-white">{title}</h4>
         <p className="max-w-[10rem] text-neutral-700 text-sm dark:text-neutral-300">{description}</p>

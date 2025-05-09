@@ -1,12 +1,11 @@
 import { OpenGraph } from "@/lib/og";
-import { QueryClient, dehydrate } from "@tanstack/react-query";
+import { fetchUser } from "@/lib/queries/me";
+import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { HydrationBoundary } from "@tanstack/react-query";
-import { fetchUser } from "@/lib/queries/me";
-import TanstackQueryProvider from "./providers";
+import "../globals.css";
+import TanstackQueryProvider from "../providers";
 
 const inter = Inter({
   subsets: ["latin"],
